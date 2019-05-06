@@ -1,0 +1,5 @@
+.idea/
+*.pyc
+
+# OS X related
+.DS_Store
