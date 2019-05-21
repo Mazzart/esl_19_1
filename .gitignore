@@ -1,5 +1,6 @@
 .idea/
 *.pyc
+.env
 
 # OS X related
 .DS_Store
