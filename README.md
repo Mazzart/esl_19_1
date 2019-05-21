@@ -13,7 +13,7 @@ You can check the project here: [filesharing-2019](https://filesharing-2019.hero
 
 First, clone the repository to your local machine:
 
-`$ git clone https://`
+`$ git clone https://github.com/Mazzart/esl_19_1.git`
 
 Install the requirements:
 
