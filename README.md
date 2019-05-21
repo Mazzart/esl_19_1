@@ -19,7 +19,7 @@ Install the requirements:
 
 `$ pip install -r requirements.txt`
 
-Apply the migrations:
+Before the next command check the presence of a secret key in the environment variables. Apply the migrations:
 
 `$ python manage.py migrate`
 
