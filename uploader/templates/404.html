@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div align="center">
+    <h1 style="line-height: 150%; font-size: 10em">404</h1>
+    <h1>Oops! Something went wrong!</h1>
+    <p style="line-height: 250px">
+    <a href="{% url 'upload' %}" class="btn btn-primary btn-lg">Return to Home</a>
+    </p>
+</div>
+
+{% endblock content %}

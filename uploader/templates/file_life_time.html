@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="clockdiv">
+  <div>
+    <span id="day"></span>
+    <div class="smalltext">Days</div>
+  </div>
+  <div>
+    <span id="hour"></span>
+    <div class="smalltext">Hours</div>
+  </div>
+  <div>
+    <span id="minute"></span>
+    <div class="smalltext">Minutes</div>
+  </div>
+  <div>
+    <span id="second"></span>
+    <div class="smalltext">Seconds</div>
+  </div>
+</div>
+
+<p id="time" align="center" style="line-height: 200px; font-size: 50px"></p>
+<p align="center" style="line-height: 60px">
+    <a href="{% url 'files_list' %}" class="btn btn-primary btn-lg">Return to Files</a>
+</p>
+
+<script type="text/javascript">
+    var fileDate = "{{document.create_date|date:'M d, Y H:i:s'}}";
+    var lifeTime = "{{document.time}}";
+    var fileDateCount = Math.floor(new Date(fileDate).getTime() / 1000);
+
+    var x = setInterval(function countDown() {
+        var now = Math.floor(new Date().getTime() / 1000);
+        var leftTime = lifeTime - (now - fileDateCount);
+
+        var days = Math.floor(leftTime / (60 * 60 * 24));
+        var hours = Math.floor((leftTime % (60 * 60 * 24)) / (60 * 60));
+        var minutes = Math.floor((leftTime % (60 * 60)) / 60);
+        var seconds = Math.floor(leftTime % 60);
+
+        document.getElementById("day").innerHTML = days;
+        document.getElementById("hour").innerHTML = hours;
+        document.getElementById("minute").innerHTML = minutes;
+        document.getElementById("second").innerHTML = seconds;
+
+        if (leftTime < 0) {
+            clearInterval(x);
+            document.getElementById("day").innerHTML = "0";
+            document.getElementById("hour").innerHTML = "0";
+            document.getElementById("minute").innerHTML = "0";
+            document.getElementById("second").innerHTML = "0";
+            window.location.href="{% url 'file_not_exist' document.pk %}";
+        }
+
+    }, 1000);
+</script>
+
+{% endblock content %}

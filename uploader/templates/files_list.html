@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p>
+    <a href="{% url 'upload' %}" class="btn btn-primary btn-lg">Return to upload page</a>
+</p>
+<h2 class="display-4">Files</h2>
+
+{% if messages %}
+<div class="alert alert-success" role="alert">
+    {% for message in messages %}
+    <p>{{ message }}</p>
+    {% endfor %}
+</div>
+{% endif %}
+
+<table class="table mb-0">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Time left</th>
+        <th>Delete now</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% if documents %}
+    {% for document in documents %}
+    <tr>
+        <td>{{ document.file.name }}</td>
+        <td>
+            <form method="post" action="{% url 'file_life_time' document.pk %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary btn-sm">Check</button>
+            </form>
+        <td>
+            <form method="post" action="{% url 'delete_file' document.pk %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    {% else %}
+    <p>No documents has been uploaded</p>
+    {% endif %}
+    </tbody>
+</table>
+
+{% endblock content %}

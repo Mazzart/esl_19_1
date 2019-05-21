@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div class="row">
+    <div class="col">
+      <h1 class="display-4">Upload your file</h1>
+        <p>This is a form to upload file. Choose the file and enter the desired life time</p>
+        <hr class="my-4">
+
+        {% if messages %}
+        <div class="alert alert-success" role="alert">
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <p>{{ form.file.help_text }}</p>
+                    <p>{{ form.file }}</p>
+                </div>
+                <div class="form-group col-md-12">
+                    <p>{{ form.time.help_text}}</p>
+                    <p>{{ form.time }}</p>
+                </div>
+            </div>
+
+            <p><input type="submit" class="btn btn-primary btn-lg" value="Upload File"/></p>
+        </form>
+        <hr class="my-4">
+    </div>
+      <div class="col col-lg-2"></div>
+    <div class="col">
+        <h1 class="display-4">Downloaded files</h1>
+        <p>Here you can view downloaded files, check their lifetime and delete them manually</p>
+        <hr class="my-4">
+        <a href="{% url 'files_list' %}" class="btn btn-primary btn-lg">Files</a>
+        <hr class="my-4">
+    </div>
+  </div>
+
+{% endblock content %}
