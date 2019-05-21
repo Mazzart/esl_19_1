@@ -3,3 +3,6 @@
 
 # OS X related
 .DS_Store
+
+# Django stuff
+db.sqlite3
