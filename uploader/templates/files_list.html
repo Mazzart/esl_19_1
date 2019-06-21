@@ -24,7 +24,6 @@
     </tr>
     </thead>
     <tbody>
-    {% if documents %}
     {% for document in documents %}
     <tr>
         <td>{{ document.file.name }}</td>
@@ -40,10 +39,9 @@
             </form>
         </td>
     </tr>
+    {% empty %}
+        <p>No documents has been uploaded</p>
     {% endfor %}
-    {% else %}
-    <p>No documents has been uploaded</p>
-    {% endif %}
     </tbody>
 </table>
 
