@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend align="center">Join Now</legend>
+                {{ form.as_p }}
+            </fieldset>
+            <div class="form-group" align="center">
+                <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
+            </div>
+        </form>
+        <div class="border-top pt-3" align="center">
+            <small class="text-muted">
+                Already have an account? <a class="ml-2" href="#">Sign In</a>
+            </small>
+        </div>
+    </div>
+
+{% endblock content %}
